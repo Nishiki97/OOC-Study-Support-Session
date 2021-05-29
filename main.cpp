@@ -31,6 +31,18 @@ Box::Box(int l, int w, int h){
   height = h;
 }
 
+void Box::setLength(int l){
+  length = l;
+}
+
+void Box::setWidth(int w){
+  width = w;
+}
+
+void Box::setHeight(int h){
+  height = h;
+}
+
 double Box::findVolume(){
   return length * width * height;
 }
@@ -40,12 +52,25 @@ using namespace std;
 int main() {
   
 //(iii)
-  Box box1;
+  Box box1; //static objects
 
 //(iv)
   Box box2(5,2,3);
 
 //(v)
   cout << "Volume is: " << box2.findVolume();
+
+//(vi)
+  Box *box3;
+
+  box3 = new Box();
+
+//(vii)
+  box3->setLength(10);
+  box3->setWidth(7);
+  box3->setHeight(3);
+
+//to check whether the variables are assigned properly
+  cout << "Volume from dynamic object: " << box3->findVolume();
 }
 
