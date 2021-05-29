@@ -46,7 +46,6 @@ int main() {
   Box box2(5,2,3);
 
 //(v)
-  int vol = box2.findVolume();
-  cout << "Volume is: " << vol;
+  cout << "Volume is: " << box2.findVolume();
 }
 
