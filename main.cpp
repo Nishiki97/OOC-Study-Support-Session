@@ -1,51 +1,64 @@
 #include <iostream>
+using namespace std;
+//class B
+class B{
+  private:
+    int num2;
+  
+  public:
+    void setNum(int n2);
+    int getNum();
+};
 
-class Box{
+void B::setNum(int n2){
+  num2 = n2;
+}
 
-private:
-  double length;
-  double width;
-  double height;
+int B::getNum(){
+  return num2;
+}
 
-public:
-  Box();
-  Box(int l, int w, int h);
-  void setLength(int l);
-  void setWidth(int w);
-  void setHeight(int h);
-  double findVolume();
-
+//class A
+class A{
+  private:
+    int num1;
+  
+  public:
+    void setNum(int n1);
+    void add(B b);
+    void display();
 };
 
 //(i)
-Box::Box(){
-  length = 0;
-  width = 0;
-  height = 0;
+void A::setNum(int n1){
+  num1 = n1;
 }
+
+void A::add(B b){
+  num1 = num1 + b.getNum();
+}
+
+void A::display(){
+  cout << "total is: " << num1;
+}
+
+//main class
+int main() {
 
 //(ii)
-Box::Box(int l, int w, int h){
-  length = l;
-  width = w;
-  height = h;
-}
+  A obj1;
+  B obj2;
 
-double Box::findVolume(){
-  return length * width * height;
-}
+  obj1.add(obj2);
+  obj1.display();
 
-using namespace std;
-
-int main() {
-  
 //(iii)
-  Box box1;
+  A *obj3;
 
-//(iv)
-  Box box2(5,2,3);
+  obj2.setNum(20);
 
-//(v)
-  cout << "Volume is: " << box2.findVolume();
+  obj3->setNum(10);
+  obj3->add(obj2);
+  obj3->display();
 }
 
