@@ -1,40 +1,54 @@
 #include <iostream>
+#include <cstring>
+
 using namespace std;
 
-//Picture class - parent class
-class Picture{
+//parent class
+class Parent{
 
 protected:
-  string title;
-  double price;
+  string name;
 
 public:
-  void updatePrice();
+  void assignName(string pname);
+  void pdisplay();
 
 };
 
-//Photograph class - child
-class Photograph{
+void Parent::assignName(string pname){
+  name = pname;
+}
+void Parent::pdisplay(){
+  cout << "parent class is called!" << endl;
+  cout << "name is: " << name << endl;
+}
+
+//child class
+class Child : public Parent{
 
 private:
-  string photograph;
-  string camera;
-  int speed;
-  int aperture;
+  int age;
 
 public:
-  void alterContrast();
+  void assignAge(int aAge);
+  void cdisplay();
 
 };
 
-//Painting class - child
-class Painting{
+void Child::assignAge(int aAge){
+  age = aAge;
+}
+void Child::cdisplay(){
+  cout << "child class is called!" << endl;
+  cout << "age is: " << age << endl;
+}
 
-private:
-  string artist;
-  string type;
-  string owner;
+int main() {
+  Child c;
 
-public:
-  void printprovenance();
-};
+  c.assignName("nishiki");
+  c.assignAge(23);
+  c.cdisplay();
+  c.pdisplay();
+
+}
