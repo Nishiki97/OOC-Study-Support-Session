@@ -1,66 +1,43 @@
 #include <iostream>
+#include <cstring>
+#define SIZE 20
 
 using namespace std;
 
-//salesperson -----> product
+//(i)
+class Item{
 
-class Product{ 
-  
 private:
-string productID;
-string name;
-double price;
+  int itemID;
+  char name[SIZE];
+  double price;
 
 public:
-Product(){}
+  Item();
+  Item(int pid, char pname[]);
+  void setPrice(double pprice);
+  double getPrice();
+  void display();
 
-Product(string pID, string pname,double pPrice){
-  productID= pID;
-  name = pname;
-  price = pPrice;
+};
+
+//(ii)
+Item::Item(int pid, char pname[]){
+
+  itemID = pid;
+  strcpy(name, pname);
 
 }
-float getPrice(){
+
+//(iii)
+void Item::setPrice(double pprice){
+
+  price = pprice;
+
+}
+
+double Item::getPrice(){
+
   return price;
-}
 
-void display(){
-
-  cout<< " Product ID =" << productID<< endl;
-  cout<< " Product name =" << name << endl;
-  cout<< " Price = " << price << endl;
-}
-
-};
-
-class SalesPerson{
-
-private:
-  string name;
-  double salesAmount;
-
-public:
-SalesPerson(string pname){
-  name = pname;
-  salesAmount= 0;
-}
-
-void addSales(int qty, Product *P){
-  salesAmount= qty* P->getPrice();
-}
-
-void display(){
-  cout<< "name = " << name << endl;
-  cout<< "Sales Amount = " << salesAmount<< endl;
-}
-
-};
-
-int main() {
-  Product *P1 = new Product("P001","Mugs" , 200.00);
-
-  SalesPerson *SP = new SalesPerson("Ajith");
-  
-  //SP->addSales(10, P1);
-  SP->display();
 }
