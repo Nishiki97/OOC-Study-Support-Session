@@ -1,74 +1,72 @@
 #include <iostream>
-#include <cstring>
 
 using namespace std;
 
 //part
-class Room{
+class Artist
+{
+private :
+string name;
 
-private:
-  int roomno;
+public :
+Artist(string pname){
+  name = pname;
+}
 
-public:
-  Room(){
+void displayArtist(){
+  cout<< "name = " << name << endl;
+}
 
-  }
-
-  Room(int no) {
-    roomno = no;
-  }
-
-  void Display() {
-    cout<< "Room " << roomno << endl;
-  }
-
-  ~Room() {
-    cout<< "destroying Room " << roomno<< endl;
-  }
+~Artist(){
+  cout<< "Artist giyaa: " << name << endl;
+}
 
 };
 
-//----------------------------------------//
+//-------------------------------------------
 //whole
-class House {
 
+class Band
+{
 private:
-  Room *room[2];
+Artist *art[2];
 
 public:
-  House(){
-    room[0] = new Room(101);
-    room[1] = new Room(102);
-  }
+Band(){};
 
-  House(int no1, int no2) {
-    room[0] = new Room(no1);
-    room[1] = new Room(no2);
-  }
+void addArtist(Artist *art1, Artist *art2){
+  art[0] = art1;
+  art[1] = art2;
+}
 
-  void DisplayClassRooms() {
-    for (int i=0; i<2; i++)
-      room[i]->Display(); 
-  }
+void displayBand(){
+  for(int i = 0; i < 2; i++)
+    art[i]->displayArtist();
+}
 
-  ~House() {
-    cout<< "House is destroyed!" << endl;
-      for (int i=0; i <2; i++)
-          delete room[i];
-    cout<< "Iwaraiiii!" << endl;
-  }
+~Band(){
+  cout<< "Band eka iwarai!" << endl;
 
+}
 };
 
 //main
+
 int main() {
+
+  Band *ABC = new Band();
+
+  Artist *e1 = new Artist("K sujeewa");
+  Artist *e2 = new Artist("Ginger");
+
+  ABC->addArtist(e1, e2);
+
+  ABC->displayBand();
+
+  delete ABC;
+
+  e1->displayArtist();
+  e2->displayArtist();
   
- House *myUniversity;
- 
- myUniversity = new House(501, 502);
- myUniversity->DisplayClassRooms();
-
- delete myUniversity;
-
- return 0;
+  return 0;
 }
