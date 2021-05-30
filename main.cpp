@@ -3,52 +3,72 @@
 
 using namespace std;
 
-//parent class
-class Parent{
-
-protected:
-  string name;
-
-public:
-  void assignName(string pname);
-  void pdisplay();
-
-};
-
-void Parent::assignName(string pname){
-  name = pname;
-}
-void Parent::pdisplay(){
-  cout << "parent class is called!" << endl;
-  cout << "name is: " << name << endl;
-}
-
-//child class
-class Child : public Parent{
+//part
+class Room{
 
 private:
-  int age;
+  int roomno;
 
 public:
-  void assignAge(int aAge);
-  void cdisplay();
+  Room(){
+
+  }
+
+  Room(int no) {
+    roomno = no;
+  }
+
+  void Display() {
+    cout<< "Room " << roomno << endl;
+  }
+
+  ~Room() {
+    cout<< "destroying Room " << roomno<< endl;
+  }
 
 };
 
-void Child::assignAge(int aAge){
-  age = aAge;
-}
-void Child::cdisplay(){
-  cout << "child class is called!" << endl;
-  cout << "age is: " << age << endl;
-}
+//----------------------------------------//
+//whole
+class House {
 
+private:
+  Room *room[2];
+
+public:
+  House(){
+    room[0] = new Room(101);
+    room[1] = new Room(102);
+  }
+
+  House(int no1, int no2) {
+    room[0] = new Room(no1);
+    room[1] = new Room(no2);
+  }
+
+  void DisplayClassRooms() {
+    for (int i=0; i<2; i++)
+      room[i]->Display(); 
+  }
+
+  ~House() {
+    cout<< "House is destroyed!" << endl;
+      for (int i=0; i <2; i++)
+          delete room[i];
+    cout<< "Iwaraiiii!" << endl;
+  }
+
+};
+
+//main
 int main() {
-  Child c;
+  
+ House *myUniversity;
+ 
+ myUniversity = new House(501, 502);
+ myUniversity->DisplayClassRooms();
 
-  c.assignName("nishiki");
-  c.assignAge(23);
-  c.cdisplay();
-  c.pdisplay();
+ delete myUniversity;
 
+ return 0;
 }
